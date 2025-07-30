@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div id="toast-msg" class="toast"></div>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PixelNest - Categories</title>
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="icon" href="assets/favicon.png" />
+  <style>
+    
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url("assets/EDULINER.png") no-repeat center center/cover;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-attachment: fixed;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background-image: url('assets/bg-mobile.png');
+      }
+    }
+
+    .category-section-updated {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .glass-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 14px 28px;
+      font-size: 1rem;
+      color: #fff;
+      backdrop-filter: blur(15px);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(255,255,255,0.1);
+    }
+
+    .glass-btn:hover {
+      background: rgba(255,255,255,0.18);
+      transform: scale(1.07);
+      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+    }
+
+    .lux-search {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .search-glass-box {
+      display: flex;
+      margin-top: -100px; 
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 12px 20px;
+      border-radius: 40px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+.search-button {
+  box-shadow: 0 0 12px rgba(0, 153, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  box-shadow: 0 0 20px rgba(0, 153, 255, 0.9), 0 0 40px rgba(0, 153, 255, 0.5);
+  background: rgba(0, 153, 255, 0.15);
+  transform: scale(1.05);
+}
+
+    .search-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 1rem;
+      width: 220px;
+    }
+
+    .wallpapers {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 50px 20px;
+    }
+
+    .wallpaper-card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      animation: fadeSlideUp 0.6s ease;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .wallpaper-card:hover {
+      transform: scale(1.05);
+    }
+
+    .wallpaper-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;      
+  object-position: center;
+  display: block;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.08);
+  transition: transform 0.3s ease;
+  background-color: #111;  
+}
+
+
+
+if (!img || !img.webformatURL || !img.largeImageURL) return;
+onerror="this.closest('.wallpaper-card').remove()"
+
+
+
+
+    .refresh-btn {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto 0;
+    }
+
+    .refresh-btn button {
+      background: rgba(255,255,255,0.1);
+      padding: 10px 24px;
+      border-radius: 20px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .refresh-btn button:hover {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      background: #111;
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 90vw;
+      max-height: 80vh;
+    }
+
+    .modal-content img {
+      width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .download-btn, .close-btn {
+      background: rgba(255,255,255,0.1);
+      padding: 8px 20px;
+      border-radius: 15px;
+      color: white;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .download-btn:hover, .close-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .wallpaper-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 174, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(0, 174, 255, 0.25); 
+}
+
+.wallpaper-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;      
+  object-position: center;
+  display: block;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.08);
+  transition: transform 0.3s ease;
+  background-color: #111;  
+}
+
+/* Hover effect */
+.wallpaper-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 174, 255, 0.4);
+  border-color: rgba(0, 174, 255, 0.7);
+}
+
+.wallpaper-card img:hover {
+  transform: scale(1.03);
+}
+
+.tagline-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tagline-line {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin: 8px 0;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+  </style>
+  <!-- Loader Overlay -->
+<div id="loader-overlay">
+  <div class="loader"></div>
+</div>
+<style>
+/* LOADER */
+#loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s ease;
+}
+
+.loader {
+  border: 6px solid #ffffff;
+  border-top: 6px solid #ff4d88;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+  
+</head>
+
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo"><strong><i>PixelNest </i></strong>🌱</div>
+      <nav class="nav">
+  <a href="index.html" class="nav-btn"id="HomeLink">Home</a>
+  <a href="main.html" class="nav-btn">Categories</a>
+  <a href="about.html" class="nav-btn" id="aboutLink">About</a>
+</nav>
+
+    </header>
+
+    <section class="hero">
+  <h1><i>Explore by </i><span class="highlight">Category 🌱</span></h1>
+  <div class="tagline-container" id="tagline-container"></div>
+  
+
+  <!-- ⬇ Move this here -->
+  <div class="category-section-updated">
+    <div class="category-grid">
+      <button class="glass-btn" onclick="fetchWallpapers('black wallpaper amoled')">🖤 Dark Lover</button>
+      <button class="glass-btn" onclick="fetchWallpapers('nature')">🌿 Nature</button>
+      <button class="glass-btn" onclick="fetchWallpapers('space')">🌌 Space</button>
+      <button class="glass-btn" onclick="fetchWallpapers('technology')">💻 Tech</button>
+      <button class="glass-btn" onclick="fetchWallpapers('abstract')">🎨 Abstract</button>
+      <button class="glass-btn" onclick="fetchWallpapers('animals')">🐶 Animals</button>
+    </div>
+  </div>
+</section>
+
+
+    <section class="lux-search">
+      <div class="search-glass-box">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search luxury wallpapers..."/>
+        <button class="glass-btn search-button" onclick="searchImages()">Search</button>
+      </div>
+    </section>
+
+
+
+    </div>
+    <div id="wallpaper-container"></div>
+
+    <section class="wallpapers" id="wallpapers"></section>
+  </div>
+
+  <div class="modal-overlay" id="wallpaperModal">
+    <div class="modal-content">
+      <img id="modalImage" src="" alt="Wallpaper" />
+      <div class="modal-actions">
+        <a id="downloadLink" class="download-btn" download target="_blank">⬇ Download</a>
+        <button class="close-btn" onclick="closeModal()">× Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+
+    window.onload = () => {
+      fetchWallpapers(currentQuery);
+    };
+
+    async function fetchWallpapers(query, page = 1) {
+  const baseURL = "ADD_YOUR_BACKEND_LINK_HERE_OR_API";
+
+  try {
+    const res = await fetch(`${baseURL}/api/images?q=${encodeURIComponent(query)}&page=${page}`);
+    const data = await res.json();
+
+    if (!data.hits || data.hits.length === 0) {
+      showToast("No images found.");
+      return;
+    }
+
+    displayImages(data.hits);
+  } catch (err) {
+    console.error("Error fetching wallpapers:", err);
+    showToast("Failed to load images Backend is turned off turn it on and TRY AGAIN.");
+  }
+}
+
+    function searchImages() {
+      const query = document.getElementById("searchInput").value.trim();
+      if (!query) return;
+      fetchWallpapers(query);
+    }
+
+    function refreshImages() {
+      fetchWallpapers(currentQuery);
+    }
+
+    function displayWallpapers(images) {
+  const container = document.getElementById("wallpapers");
+  container.innerHTML = "";
+
+  if (!images || images.length === 0) {
+    container.innerHTML = `
+      <div class="no-image-found">🚫 NO IMAGE FOUND!!</div>
+    `;
+    return;
+  }
+
+  images.forEach(image => {
+    const card = document.createElement("div");
+    card.className = "wallpaper-card";
+    card.innerHTML = `
+      <img src="${image.webformatURL}" alt="Wallpaper" onclick="openModal('${image.largeImageURL}')" />
+    `;
+    container.appendChild(card);
+  });
+}
+
+
+
+    function openModal(imageUrl) {
+      document.getElementById("modalImage").src = imageUrl;
+      document.getElementById("downloadLink").href = imageUrl;
+      document.getElementById("wallpaperModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("wallpaperModal").style.display = "none";
+    }
+  </script>
+  <script>
+function showLoaderAndRedirect(url) {
+  const overlay = document.getElementById('loader-overlay');
+  overlay.style.display = 'flex';
+  setTimeout(() => {
+    window.location.href = url;
+  }, 900);
+}
+
+document.querySelector('a[href="index.html"]').addEventListener('click', function(e) {
+  e.preventDefault();
+  showLoaderAndRedirect('index.html');
+});
+document.querySelector('a[href="about.html"]').addEventListener('click', function(e) {
+  e.preventDefault();
+  showLoaderAndRedirect('about.html');
+});
+</script>
+
+  <style>
+  /* Fullscreen loader styles */
+#page-loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Spinner animation */
+.loader-spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top: 6px solid #00ccff;
+  border-radius: 50%;
+  animation: spin360 1s linear infinite;
+}
+
+@keyframes spin360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+</style>
+  
+  <script>
+  const taglines = [
+    "✨ Dive into a universe of stunning visuals — just one tap away.",
+    "🌈 Pick a vibe, hit search, and let the pixels work their magic!",
+    "📸 All wallpapers are fetched live from high-quality open <strong> APIs </strong>.",
+    "⚠️ Spotted something off? Help us stay clean — <a href='https://mail.google.com/mail/?view=cm&fs=1&to=sanketpadhyal3@gmail.com&su=Report%20Issue%20on%20PixelNest&body=Describe%20the%20issue%20here...' target='_blank' style='color:#66ccff;text-decoration:underline;'>report via MAIL</a>.",
+    "💎 Stay inspired. Stay curious. Stay aesthetic. This is <strong>PixelNest</strong> 🌱."
+  ];
+
+  const container = document.getElementById("tagline-container");
+
+  function showTaglinesSequentially() {
+    taglines.forEach((line, index) => {
+      setTimeout(() => {
+        const p = document.createElement("p");
+        p.className = "tagline-line";
+        p.innerHTML = line;
+        container.appendChild(p);
+      }, index * 600); // 0.6s between lines
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", showTaglinesSequentially);
+</script>
+
+<style>
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-grid .glass-btn {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Add staggered delays for each button */
+.category-grid .glass-btn:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.category-grid .glass-btn:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.category-grid .glass-btn:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.category-grid .glass-btn:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.category-grid .glass-btn:nth-child(5) {
+  animation-delay: 1s;
+}
+.category-grid .glass-btn:nth-child(6) {
+  animation-delay: 1.2s;
+}
+
+.no-image-found {
+  width: 100%;
+  padding: 60px 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff4d4d;
+  animation: shake 0.4s ease-in-out 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: translateX(600px); 
+}
+
+
+@keyframes shake {
+  0% { transform: translateX(600px); }
+  25% { transform: translateX(580px); }
+  50% { transform: translateX(620px); }
+  75% { transform: translateX(570px); }
+  100% { transform: translateX(600px); }
+}
+
+</style>
+
+
+<style>/* NAV BUTTONS */
+.nav {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px;
+}
+
+.nav-btn {
+  position: relative;
+  font-size: 17px;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 5px;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-btn:hover {
+  color: #ffb3ec;
+  transform: translateY(-3px);
+  text-shadow: 0 0 5px #ffb3ec;
+}
+
+
+
+.nav-btn::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  width: 120%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff94f4, #c694ff);
+  transition: transform 0.3s ease;
+}
+
+.nav-btn:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+
+.nav-btn:hover {
+  color: #ffd9fb;
+  transform: scale(1.05);
+}
+
+.nav-btn:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}</style>
+
+<!-- Loader Overlay -->
+<div id="loader-overlay">
+  <div class="loader"></div>
+</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("show");
+  }
+</script>
+
+<style>
+/* Add animation keyframes */
+@keyframes navBtnFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to nav buttons */
+.nav-btn {
+  opacity: 0; /* Ensure they start hidden */
+  animation: navBtnFadeIn 0.6s ease forwards;
+}
+
+/* Delay each nav button for staggered effect */
+.nav-btn:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.nav-btn:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.nav-btn:nth-child(3) {
+  animation-delay: 0.6s;
+}
+</style>
+<script>
+  function showToast(message) {
+    const toast = document.getElementById('toast-msg');
+    toast.textContent = message;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+</script>
+<style>
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 153, 255, 0.1);
+  color: #57f103;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0, 153, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 153, 255, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+.toast.show {
+  opacity: 1;
+}
+</style>
+<script>
+function displayImages(images) {
+  const container = document.getElementById("wallpaper-container");
+  container.innerHTML = ""; 
+
+  images.forEach(img => {
+    
+    if (!img || !img.webformatURL || !img.largeImageURL) return;
+
+    const imgCard = document.createElement("div");
+    imgCard.className = "wallpaper-card";
+
+    imgCard.innerHTML = `
+      <img src="${img.webformatURL}" alt="${img.tags}" 
+           onclick="openModal('${img.largeImageURL}')" 
+           onerror="this.closest('.wallpaper-card').remove()">
+      <div class="wallpaper-overlay">
+        <button class="download-btn" onclick="window.open('${img.largeImageURL}', '_blank')">
+          Download
+        </button>
+      </div>
+    `;
+
+    container.appendChild(imgCard);
+  });
+}
+</script>
+
+
+<style>
+/* Wallpaper grid container */
+#wallpaper-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Wallpaper card */
+.wallpaper-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: none;
+}
+
+.wallpaper-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive image styling */
+.wallpaper-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;      
+  object-position: center;
+  display: block;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.08);
+  transition: transform 0.3s ease;
+  background-color: #111;  
+}
+
+
+/* Hover zoom effect */
+.wallpaper-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay for download button */
+.wallpaper-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wallpaper-card:hover .wallpaper-overlay {
+  opacity: 1;
+}
+
+/* Download button style */
+.download-btn {
+  padding: 8px 14px;
+  background: #ffffff12;
+  color: #fff;
+  border: 1px solid #ffffff44;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.download-btn:hover {
+  background: #ffffff30;
+  transform: scale(1.08);
+}
+
+/* Mobile-friendly tweaks */
+@media (max-width: 768px) {
+  #wallpaper-container {
+    padding: 20px 12px;
+    gap: 16px;
+  }
+}
+</style>
+
+
+<script>
+function displayImages(images) {
+  const container = document.getElementById("wallpaper-container");
+  container.innerHTML = ""; 
+
+  images.forEach(img => {
+    
+    if (!img || !img.webformatURL || !img.largeImageURL) return;
+
+    const imgCard = document.createElement("div");
+    imgCard.className = "wallpaper-card";
+
+    imgCard.innerHTML = `
+      <img src="${img.webformatURL}" alt="${img.tags}" 
+           onclick="openModal('${img.largeImageURL}')" 
+           onerror="this.closest('.wallpaper-card').remove()">
+      <div class="wallpaper-overlay">
+        <button class="download-btn" onclick="window.open('${img.largeImageURL}', '_blank')">
+          Download
+        </button>
+      </div>
+    `;
+
+    container.appendChild(imgCard);
+  });
+}
+</script>
+
+
+
+
+<!-- Modal Preview -->
+<div id="modal-preview" class="modal-hidden">
+  <div id="modal-content">
+    <span id="modal-close">&times;</span>
+    <img id="modal-image" src="" alt="Preview">
+    <a id="modal-download" target="_blank">Download</a>
+  </div>
+</div>
+<style>
+#modal-preview {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#modal-preview.modal-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Modal Content */
+#modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+#modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+/* Close Button */
+#modal-close {
+  position: absolute;
+  top: -25px;
+  right: -10px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Download Button */
+#modal-download {
+  background: #ffffff15;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid #ffffff44;
+  backdrop-filter: blur(6px);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#modal-download:hover {
+  background: #ffffff33;
+  transform: scale(1.05);
+}
+
+/* Mobile optimization */
+@media (max-width: 600px) {
+  #modal-download {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  #modal-close {
+    font-size: 1.8rem;
+  }
+}
+</style>
+<script>
+function openModal(imgUrl) {
+  const modal = document.getElementById("modal-preview");
+  const modalImg = document.getElementById("modal-image");
+  const downloadLink = document.getElementById("modal-download");
+
+  modalImg.src = imgUrl;
+  downloadLink.href = imgUrl;
+  modal.classList.add("modal-visible");
+  document.body.style.overflow = "hidden";
+}
+
+document.getElementById("modal-close").onclick = () => {
+  document.getElementById("modal-preview").classList.remove("modal-visible");
+  document.body.style.overflow = "auto";
+};
+</script>
+
+</body>
+</html>

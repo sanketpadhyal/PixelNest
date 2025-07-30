@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixelNest - Beautiful Wallpapers</title>
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="icon" href="assets/favicon.png" />
+</head>
+<body>
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+  <div id="toast-msg" class="toast"></div>
+
+
+  <div class="app" style="display: none;">
+    <header class="header">
+  <div class="logo"><strong><i>PixelNest </i></strong>🌱</div>
+  <nav class="nav">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="main.html" class="nav-btn" id="categoriesLink">Categories</a>
+    <a href="about.html" class="nav-btn" id="aboutLink">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+      <h1><i>Welcome to </i><span class="highlight">PixelNest 🌱</span></h1>
+      <p class="tagline">A universe of stunning wallpapers at your fingertips.</p>
+      <p class="tagline">Browse by category or discover random beauty.</p>
+      <p class="tagline">Ultra HD quality, one-click downloads.</p>
+      <p class="tagline">Elegant. Fast. Free. For everyone.</p>
+    </section>
+<section class="category-panels">
+  <div class="panel">
+    <h3>🌿 Nature Wallpapers</h3>
+    <p>Feel the calm of forests, mountains, and serene landscapes in stunning HD.</p>
+  </div>
+  <div class="panel">
+    <h3>🚀 Space Wallpapers</h3>
+    <p>Explore galaxies, stars, and cosmic wonders from the edge of the universe.</p>
+  </div>
+  <div class="panel">
+    <h3>💻 Technology Wallpapers</h3>
+    <p>Modern, digital, futuristic visuals perfect for tech lovers and coders.</p>
+  </div>
+  </section>
+
+    <footer class="footer">
+      <p>© 2025 <strong><i>PixelNest</i>🌱</strong> — Built with 💖 by <a href="https://github.com/sanketpadhyal" target="_blank">@sanketpadhyal</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // Show app after loader
+    window.addEventListener("load", () => {
+      document.getElementById("loader").style.display = "none";
+      document.querySelector(".app").style.display = "block";
+    });
+  </script>
+  
+
+  <style> 
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: url("assets/EDULINER.png") no-repeat center center/cover;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  @media (max-width: 768px) {
+  body {
+    background-image: url('assets/bg-mobile.png');
+  }
+}
+
+  </style>
+
+  <!-- Loader Overlay -->
+<div id="loader-overlay">
+  <div class="loader"></div>
+</div>
+
+<script>
+  const loaderOverlay = document.getElementById('loader-overlay');
+
+  document.getElementById('categoriesLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    loaderOverlay.style.display = 'flex';
+    setTimeout(() => {
+      window.location.href = 'main.html';
+    }, 1000);
+  });
+
+  document.getElementById('aboutLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    loaderOverlay.style.display = 'flex';
+    setTimeout(() => {
+      window.location.href = 'about.html';
+    }, 1000);
+  });
+</script>
+<script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("show");
+  }
+</script>
+<script>
+  function toggleMenu() {
+    document.getElementById("mobileMenu").classList.toggle("show");
+  }
+
+  // Auto-close menu after link click (on mobile)
+  document.querySelectorAll('.nav-btn').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById("mobileMenu").classList.remove("show");
+    });
+  });
+
+  function showLoader() {
+  document.getElementById('loader-overlay').style.display = 'flex';
+}
+
+function setupLinkWithLoader(id, target) {
+  const link = document.getElementById(id);
+  ['click', 'touchstart'].forEach(evt => {
+    link.addEventListener(evt, function (e) {
+      e.preventDefault();
+      showLoader();
+      setTimeout(() => {
+        window.location.href = target;
+      }, 700);
+    });
+  });
+}
+
+// Setup both buttons
+setupLinkWithLoader('categoriesLink', 'main.html');
+setupLinkWithLoader('aboutLink', 'about.html');
+
+
+
+</script>
+<style>.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 153, 255, 0.1);
+  color: #57f103;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0, 153, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 153, 255, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+.toast.show {
+  opacity: 1;
+}
+</style>
+<script>
+  function showToast(message) {
+    const toast = document.getElementById('toast-msg');
+    toast.textContent = message;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+
+  document.querySelectorAll('.category-panels .panel').forEach(panel => {
+    panel.addEventListener('click', () => {
+      const category = panel.querySelector('h3')?.innerText || 'that';
+      const name = category.replace(/[^a-zA-Z ]/g, '').trim().split(' ')[0];
+      showToast(`🔍Search for "${name}" using the search bar in categories section!` );
+    });
+  });
+</script>
+
+<script>
+  // Toggle nav menu
+  document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('show');
+  });
+
+  function showLoaderAndRedirect(url) {
+    const loader = document.getElementById('loader-overlay');
+    loader.style.display = 'flex';
+    setTimeout(() => {
+      window.location.href = url;
+    }, 600);
+  }
+
+  // Home already works, just fix others:
+  document.getElementById('categoriesLink').addEventListener('click', function (e) {
+    e.preventDefault();
+    showLoaderAndRedirect('main.html');
+  });
+
+  document.getElementById('aboutLink').addEventListener('click', function (e) {
+    e.preventDefault();
+    showLoaderAndRedirect('about.html');
+  });
+</script>
+</body>
+</html>

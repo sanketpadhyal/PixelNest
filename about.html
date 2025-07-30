@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - PixelNest</title>
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="icon" href="assets/favicon.png" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: url("assets/EDULINER.png") no-repeat center center/cover;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background-image: url("assets/bg-mobile.png");
+      }
+    }
+
+    .app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+    .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  animation: floatIn 1.5s ease forwards;
+}
+
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-btn {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .about-hero {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .about-hero h1 {
+      font-size: 2.2rem;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .info-panel {
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      flex: 1;
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(125, 228, 7, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 800px;
+      margin-top: -90px;
+      color: #fff;
+      box-shadow: 0 0 25px rgba(66, 148, 8, 0.2);
+    }
+
+    .info-box h2 {
+      margin-top: 20px;
+      color: #57e007;
+    }
+
+    .info-box p,
+    .info-box li {
+      line-height: 1.7;
+    }
+
+    .info-box ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .info-box a {
+      color: #ffa702;
+      text-decoration: none;
+    }
+
+    .info-box a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #ff5722;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 6px solid rgba(255,255,255,0.3);
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="app" style="display: none;">
+    <header class="header">
+  <div class="logo"><strong><i>PixelNest </i></strong>🌱</div>
+  <nav class="nav">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="main.html" class="nav-btn" id="categoriesLink">Categories</a>
+    <a href="about.html" class="nav-btn" id="aboutLink">About</a>
+  </nav>
+</header>
+
+    <section class="hero about-hero">
+      <h1><span class="highlight">About PixelNest 🌱</span></h1>
+      <p class="tagline">Your source for stunning, high-quality wallpapers across nature, space, tech & more.</p>
+    </section>
+
+    <section class="info-panel">
+      <div class="info-box">
+        <h2>✨ Why PixelNest?</h2>
+        <p>PixelNest was built to bring beautifully curated wallpapers to your fingertips — fast, minimal, and elegant. Designed with love for the creative and curious minds.</p>
+        
+        <h2>💡 Features</h2>
+        <ul>
+          <li>Category-based HD wallpaper browsing</li>
+          <li>One-click previews and downloads</li>
+          <li>Responsive, sleek interface</li>
+        </ul>
+
+        <h2>👨‍💻 Made by</h2>
+        <p>Crafted with 💖 by <a href="https://github.com/sanketpadhyal" target="_blank">@sanketpadhyal</a></p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© 2025 <strong><i>PixelNest</i>🌱</strong> — Built with 💖 by <a href="https://github.com/sanketpadhyal" target="_blank">@sanketpadhyal</a></p>
+    </footer>
+  </div>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.getElementById("loader").style.display = "none";
+      document.querySelector(".app").style.display = "block";
+    });
+
+    function showLoaderAndRedirect(url) {
+      const loader = document.getElementById('loader');
+      loader.style.display = 'flex';
+      setTimeout(() => {
+        window.location.href = url;
+      }, 600);
+    }
+  </script>
+</body>
+</html>
