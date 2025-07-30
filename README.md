@@ -1,4 +1,4 @@
-# [PixelNest 🌱]
+# **PixelNest 🌱**
 
 **A premium wallpaper web app** delivering beautiful, high-resolution images through category search, preview, and downloads — powered by the [Pixabay API](https://pixabay.com/api/docs/).
 
