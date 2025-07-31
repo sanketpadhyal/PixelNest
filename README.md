@@ -27,6 +27,6 @@
 
 ## 🌐 Live Preview
 
-[🔗 Live Site Link (Netlify or GitHub Pages)](https://tangerine-tulumba-2fb559.netlify.app)
+[🔗 Live Site Link (Netlify or GitHub Pages)](https://regal-dolphin-a29116.netlify.app/)
 
 
