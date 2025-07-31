@@ -21,7 +21,7 @@
 
 - **Frontend**: HTML, CSS (Glass UI), Vanilla JS
 - **API**: [Pixabay API](https://pixabay.com/api/docs/)
-- **Backend**: Node.js (for API security via proxy) via **REPLIT**
+- **Backend**: Node.js (for API security via proxy) ~ **REPLIT**
 
 ---
 
