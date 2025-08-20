@@ -10,7 +10,6 @@
 ![API](https://img.shields.io/badge/API-Pixabay-blue)  
 ![Hosting](https://img.shields.io/badge/Hosting-Netlify-purple)  
 ![Made By](https://img.shields.io/badge/Made%20By-Sanket%20Padhyal-blue)  
-![License](https://img.shields.io/badge/License-MIT-green)  
 
 ---
 
